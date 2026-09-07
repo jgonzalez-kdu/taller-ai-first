@@ -16,3 +16,14 @@ def redondear(valor: float) -> int:
 def porcentaje(monto: int, tasa: int) -> int:
     """El `tasa`% de `monto`, redondeado al peso."""
     return redondear(monto * tasa / 100)
+
+
+def formatear(monto: int) -> str:
+    """Da formato a un monto en pesos: separador de miles con punto y `$`.
+
+    Los montos negativos (por ejemplo, un descuento) se muestran con el
+    signo antes del símbolo: `-$15.000`.
+    """
+    signo = "-" if monto < 0 else ""
+    miles = f"{abs(monto):,}".replace(",", ".")
+    return f"{signo}${miles}"

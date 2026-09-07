@@ -4,6 +4,7 @@ import argparse
 
 from carrito.datos import pedido
 from carrito.descuentos import PROMOCIONES
+from carrito.dinero import formatear
 from carrito.precios import precio_linea
 from carrito.resumen import resumen
 
@@ -20,10 +21,10 @@ def main():
     elegido.promociones = [p for p in elegido.promociones if p not in args.sin]
     if args.detalle:
         for linea in elegido.lineas:
-            print(linea.producto.nombre, "x", linea.cantidad, precio_linea(linea))
+            print(linea.producto.nombre, "x", linea.cantidad, formatear(precio_linea(linea)))
         print("-")
     for etiqueta, monto in resumen(elegido).items():
-        print(etiqueta, monto)
+        print(etiqueta, formatear(monto))
 
 
 if __name__ == "__main__":
