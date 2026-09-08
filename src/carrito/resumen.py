@@ -17,7 +17,7 @@ def resumen(pedido) -> dict[str, int]:
     base = subtotal(pedido)
     descontado = total_con_descuentos(pedido)
     impuesto = iva(descontado)
-    envio = costo_envio(pedido, descontado)
+    envio = costo_envio(pedido, descontado + impuesto)
 
     lineas = {"Subtotal": base}
     if descontado != base:
